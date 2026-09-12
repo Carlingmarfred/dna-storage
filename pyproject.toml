@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "dna-storage"
+version = "1.0.0"
+description = "AI-optimized DNA data storage pipeline — encode any digital payload into stable, error-corrected synthetic DNA oligos."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Genetic Data Layering Project"}
+]
+keywords = ["dna", "storage", "bioinformatics", "error-correction", "ai", "synthetic-biology"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "reedsolo>=1.7.0",
+]
+
+[project.optional-dependencies]
+ai = ["torch>=2.0.0", "numpy>=1.24.0"]
+dev = ["pytest>=7.0", "pytest-cov", "black", "ruff", "mypy"]
+all = ["dna-storage[ai,dev]"]
+
+[project.scripts]
+dna-storage = "dna_storage.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
